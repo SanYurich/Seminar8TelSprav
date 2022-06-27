@@ -1,43 +1,85 @@
-import add as add_case
-import delete as del_case
-import log as log_case
-import view as view_case
+import log_files as l_f
+import add_files as a_f
+# import edit_files as e_f
+# import del_files as d_f
+import output_files as o_f
+import export as ex
+import importer as im
+import time
 
+def add_oper():
+    name = input(f"Название контакта: ")
+    number = int(input(f"Номер телефона: "))
+    
+    a_f.add_contact(name, number,"spravochnik.txt")
 
-def print_spisok_phone(data):
-    print("<Cписок телефонных контактов:")
-    view_case.print_case(data)
+# def edit_oper():
+#     e_f.edit_contact()
 
-def delete_contact(data):
-    print_spisok_phone(data)
-    cont_del = int(input("Укажите номер удаляемого контакта: "))
-    del_case.delete_str(data, cont_del) 
-    print("Обновленный справочник:")
-    print_spisok_phone(data)
+# def del_oper():
+#     del_number = int(input('Укажите номер контакта для удаления'))
+#     d_f.del_contact(del_number,"spravochnik.txt")
 
-def add_unit_case():
-    name = input(f"Введите Имя контакта: ")
-    number_phone = input(f"Теперь телефонный номер: ")
-    status = input(f"Выберите статус: ") # Нужна функция выбора статусов (личный, домашний, рабочий)
-    add_case.new_contact({name}, {number_phone}, {status}, "contact_log.txt")
+def output_oper():
+    o_f.output_contact()
 
-def main_menu():
+def export_oper():
+    list_format = ['txt', 'csv']
+    print('Выберите формат файла для экспорта')
+    for i, list_format in enumerate(list_format, 1):
+        print(f'({i}) -> {list_format}')
+    select = int(input('Укажите номер формата: '))
+    ex.export_contact(select)
 
-    list_operation = ['<<Основное меню>>','Телефонный справочник', 'Добавление нового контакта', 'Удаление контакта', 'Выход']
+def import_oper():
+    print("Контакты добавляются из файл: imp_spr.txt")
+    im.import_contact()
+    time.sleep(2)
+    print("=> Выполненно")
 
-    for i, list_operation in enumerate(list_operation, 0):
-        print(i, list_operation)
+def option():
+    main_menu = ['Вывести справочник на экран', 'Создать новый контакт', 'Отредактировать контакт', 'Удалить контакт', 'Экспорт контактов в файл', 'Импорт контактов из файла', 'Выход']
+    length = int(len(main_menu))
+    print("============Основное меню=============")
+    for i, main_menu in enumerate(main_menu, 1):
+        print(f'> {i} <  --> {main_menu}')
+    print("--------------------------------------")    
 
-    number = int(input("Укажите номер операции: "))
+    selection = int(input(f'Введите номер операции: '))
 
-    if number == 1:
-        print_spisok_phone("task_log.txt")
-        main_menu()
-    elif number == 2:
-        add_unit_case()
-        main_menu()
-    elif number == 3:
-        delete_contact("task_log.txt")
-        main_menu()
-    elif number == 4:
-        print('<Программа завершена>')
+    if selection > length:
+        print(f"<<<ОШИБКА! Такого номера операции не существует.>>>\n<<<Введите номер операций от 1 до {length} >>>")
+        time.sleep(2)    
+        option()
+    elif selection == 1:
+        output_oper()
+        time.sleep(3)
+        option()
+
+    elif selection == 2:
+        add_oper()
+        time.sleep(3)    
+        option()
+
+    # elif selection == 3:
+    #     edit_oper()
+    #     option()
+
+    # elif selection == 4:
+    #     del_oper
+    #     option()
+
+    elif selection == 5:
+        export_oper()
+        time.sleep(2) 
+        option()
+
+    elif selection == 6:
+        import_oper()
+        option()
+
+    elif selection == 7:
+        time.sleep(2)
+        print('Программа завершена')
+
+#print(option())

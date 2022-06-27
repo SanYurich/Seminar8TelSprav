@@ -1,3 +1,3 @@
-import interface as intif
+from interface import option
 
-intif.main_menu()
+option()
