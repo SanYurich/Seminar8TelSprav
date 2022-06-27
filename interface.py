@@ -1,7 +1,5 @@
 import log_files as l_f
 import add_files as a_f
-# import edit_files as e_f
-# import del_files as d_f
 import output_files as o_f
 import export as ex
 import importer as im
@@ -12,13 +10,6 @@ def add_oper():
     number = int(input(f"Номер телефона: "))
     
     a_f.add_contact(name, number,"spravochnik.txt")
-
-# def edit_oper():
-#     e_f.edit_contact()
-
-# def del_oper():
-#     del_number = int(input('Укажите номер контакта для удаления'))
-#     d_f.del_contact(del_number,"spravochnik.txt")
 
 def output_oper():
     o_f.output_contact()
@@ -38,7 +29,7 @@ def import_oper():
     print("=> Выполненно")
 
 def option():
-    main_menu = ['Вывести справочник на экран', 'Создать новый контакт', 'Отредактировать контакт', 'Удалить контакт', 'Экспорт контактов в файл', 'Импорт контактов из файла', 'Выход']
+    main_menu = ['Вывести справочник на экран', 'Создать новый контакт', 'Экспорт контактов в файл', 'Импорт контактов из файла', 'Выход']
     length = int(len(main_menu))
     print("============Основное меню=============")
     for i, main_menu in enumerate(main_menu, 1):
@@ -61,25 +52,15 @@ def option():
         time.sleep(3)    
         option()
 
-    # elif selection == 3:
-    #     edit_oper()
-    #     option()
-
-    # elif selection == 4:
-    #     del_oper
-    #     option()
-
-    elif selection == 5:
+    elif selection == 3:
         export_oper()
         time.sleep(2) 
         option()
 
-    elif selection == 6:
+    elif selection == 4:
         import_oper()
         option()
 
-    elif selection == 7:
+    elif selection == 5:
         time.sleep(2)
         print('Программа завершена')
-
-#print(option())

@@ -5,7 +5,3 @@ def add_contact(name, number, file):
         sprav.write(f"{name}, {number}\n")
     l_f(name, number, "Добавлен новый контакт")
     print(f'>> Добавлен новый контакт: {name}, {number}')
-
-
-
-#print(add_contact('Вася', '858985', "spravochnik.txt"))    #TEST

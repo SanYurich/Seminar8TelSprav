@@ -10,5 +10,3 @@ def output_contact():
     read_sprv.close()
     print("================================= ")
     l_f('','',"Вывод справочника на экран")
-
-#output_contact() #TEST
